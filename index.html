@@ -308,7 +308,11 @@ document.addEventListener('DOMContentLoaded', async function() {
       .split('devesacustom@gmail.com').join('devesacustom@gmail.com')
       .split('Preview complete — your message was not sent.').join('Thank you. Your note is ready to review.')
       .split('This demo form does not deliver messages. Please call or email Joe using the contact details on this site.')
-      .join('This preview does not send messages. Please call or email Joe, or have a look through recent work.');
+      .join('This preview does not send messages. Please call or email Joe, or have a look through recent work.')
+      .split('<img src="https://cdn.openart.ai/openart-ai/production/2026-11/create-image/cwvNybGaDcpqVIAUHsPC/image_1794627908890_e623b4db_1794627910086_2768d1e2.png" alt="Kitchen with white painted shaker cabinetry, brass pulls, a dark-stained waterfall island with three counter stools, and glass pendants lit above." style="width:100%;aspect-ratio:16/8;min-height:320px;object-fit:cover;display:block">')
+      .join('<img src="https://cdn.openart.ai/openart-ai/production/2026-11/create-image/cwvNybGaDcpqVIAUHsPC/image_1794627233723_fedd41f5_1794627234751_b68a1f11.png" alt="Open kitchen with white cabinetry to the ceiling, glass-front uppers, and a stained walnut island with four modern counter stools under pendant lighting." style="width:100%;aspect-ratio:16/8;min-height:320px;object-fit:cover;display:block">')
+      .split('<span>Kitchen · painted perimeter, stained waterfall island</span>')
+      .join('<span>Kitchen · painted perimeter, stained walnut island</span>');
 
     // ElevenLabs' supported public-agent embed. The agent ID is public; no API key
     // or other secret is included in the browser. Keep Woody on the consultation
