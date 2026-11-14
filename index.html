@@ -311,14 +311,19 @@ document.addEventListener('DOMContentLoaded', async function() {
       .join('This preview does not send messages. Please call or email Joe, or have a look through recent work.');
 
     // ElevenLabs' supported public-agent embed. The agent ID is public; no API key
-    // or other secret is included in the browser. The existing inquiry form remains.
+    // or other secret is included in the browser. Keep Woody on the consultation
+    // page only so the widget does not obstruct the rest of the mobile site.
     const woodyWidget = [
       '<style>',
-      'elevenlabs-convai#woody-voice-widget{position:fixed;right:20px;bottom:20px;z-index:9000;--elevenlabs-convai-widget-width:400px;--elevenlabs-convai-widget-height:600px}',
-      '@media(max-width:768px){elevenlabs-convai#woody-voice-widget{right:12px;bottom:12px;--elevenlabs-convai-widget-width:calc(100vw - 24px);--elevenlabs-convai-widget-height:min(600px,calc(100vh - 24px))}}',
+      '#woody-consultation-panel{display:none;margin:0 0 28px;padding:22px;border:1px solid #D8CFBF;background:#F6F2EA}',
+      '#woody-consultation-panel h2{margin:0 0 8px;font:400 26px/1.15 Newsreader,Georgia,serif;color:#26241F}',
+      '#woody-consultation-panel p{margin:0 0 18px;color:#4A463F;font:15px/1.5 Hanken Grotesk,Arial,sans-serif}',
+      'elevenlabs-convai#woody-voice-widget{display:block;position:static;max-width:100%;--elevenlabs-convai-widget-width:min(400px,100%);--elevenlabs-convai-widget-height:min(560px,70vh)}',
+      '@media(max-width:768px){#woody-consultation-panel{padding:18px;margin-bottom:22px}elevenlabs-convai#woody-voice-widget{--elevenlabs-convai-widget-width:100%;--elevenlabs-convai-widget-height:min(520px,68vh)}}',
       '</style>',
-      '<elevenlabs-convai id="woody-voice-widget" agent-id="agent_0201m7ca7fh0f4dvn3f4qs4rtg3j" action-text="Talk to Woody" start-call-text="Talk to Woody" end-call-text="End conversation" expand-text="Open Woody" collapse-text="Minimize" avatar-orb-color-1="#7A5A36" avatar-orb-color-2="#D8CFBF"></elevenlabs-convai>',
-      '<script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></' + 'script>'
+      '<div id="woody-consultation-panel"><h2>Prefer to talk?</h2><p>Talk or chat with Woody about your cabinetry project and consultation options.</p><elevenlabs-convai id="woody-voice-widget" agent-id="agent_0201m7ca7fh0f4dvn3f4qs4rtg3j" action-text="Talk to Woody" start-call-text="Talk to Woody" end-call-text="End conversation" expand-text="Open Woody" collapse-text="Minimize" avatar-orb-color-1="#7A5A36" avatar-orb-color-2="#D8CFBF"></elevenlabs-convai></div>',
+      '<script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></' + 'script>',
+      '<script>(function(){var panel=document.getElementById("woody-consultation-panel");function placeWoody(){var form=document.querySelector("form");if(form){if(panel.parentNode!==form.parentNode||panel.nextSibling!==form){form.parentNode.insertBefore(panel,form)}panel.style.display="block"}else{panel.style.display="none";if(panel.parentNode!==document.body)document.body.appendChild(panel)}}new MutationObserver(placeWoody).observe(document.body,{childList:true,subtree:true});placeWoody()})();</' + 'script>'
     ].join('');
     template = template.replace(/<\/body>/i, woodyWidget + '</body>');
 
